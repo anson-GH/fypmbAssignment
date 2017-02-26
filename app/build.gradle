@@ -1,0 +1,66 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.1"
+    defaultConfig {
+        applicationId "com.example.winnie.fypmbassignment"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+android {
+    useLibrary 'org.apache.http.legacy' // http hostinger
+}
+
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.1.1'
+    compile 'com.android.support:design:25.1.1'
+    testCompile 'junit:junit:4.12'
+    compile 'org.apache.httpcomponents:httpclient-android:4.3.5.1'
+    //    compile 'com.github.andyxialm:ColorDialog:1.0.0'
+    //progressdialog
+    compile 'com.edmodo:cropper:1.0.1'
+    //camera crop
+    compile 'com.albinmathew:photo-crop-library:1.0.3'
+    //camera crop
+    compile 'com.theartofdev.edmodo:android-image-cropper:2.3.+'
+    //camera crop
+    compile 'com.sun.mail:android-activation:1.5.6'
+    //Email
+    compile 'com.sun.mail:android-mail:1.5.6'
+    //Email
+    compile 'com.google.firebase:firebase-storage:10.0.1'
+    compile 'com.google.firebase:firebase-database:10.0.1'
+    compile 'com.google.firebase:firebase-core:10.0.1'
+    compile 'com.alexzh:circleimageview:1.1.2@aar'
+    //friendprofile
+    compile 'com.mikhaellopez:circularimageview:2.0.1'
+    //friendprofile
+    compile files('C:/Users/Winnie/Desktop/fypmbAssignment/.gradle/itextpdf-5.3.2.jar')
+    ///
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.squareup.picasso:picasso:2.3.2'
+    //sliderImage
+    compile 'com.nineoldandroids:library:2.4.0'
+    //sliderImage
+    compile 'com.daimajia.slider:library:1.1.5@aar'
+    //sliderImage
+    compile 'org.droidparts:droidparts-support:2.9.8'
+    ////
+}
+apply plugin: 'com.google.gms.google-services'

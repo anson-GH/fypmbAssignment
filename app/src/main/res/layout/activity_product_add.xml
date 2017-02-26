@@ -1,0 +1,298 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal"
+            android:paddingLeft="35dp"
+            android:paddingRight="35dp">
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:gravity="center"
+        android:src="@drawable/ic_imageadd"
+        android:background="@drawable/border"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:padding="5dp"
+        android:id="@+id/imageadd1" />
+    <ImageView
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:gravity="center"
+        android:src="@drawable/ic_negative"
+        android:layout_marginTop="70dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/imageminus1" />
+
+</RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:gravity="center"
+                    android:src="@drawable/ic_imageadd"
+                    android:background="@drawable/border"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:padding="5dp"
+                    android:id="@+id/imageadd2"
+                    android:visibility="gone"/>
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:gravity="center"
+                    android:src="@drawable/ic_negative"
+                    android:layout_marginTop="70dp"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/imageminus2"
+                    android:visibility="gone"/>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:gravity="center"
+                    android:src="@drawable/ic_imageadd"
+                    android:background="@drawable/border"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:padding="5dp"
+                    android:id="@+id/imageadd3"
+                    android:visibility="gone"/>
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:gravity="center"
+                    android:src="@drawable/ic_negative"
+                    android:layout_marginTop="70dp"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/imageminus3"
+                    android:visibility="gone"/>
+
+            </RelativeLayout>
+        </LinearLayout>
+
+
+
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/border"
+            >
+            <EditText
+                android:id="@+id/texttitle"
+                android:layout_width="245dp"
+                android:layout_height="40dp"
+                android:ems="10"
+                android:hint="Name of what you're selling "
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:inputType="textPersonName"
+                android:background="@null"
+                android:layout_marginLeft="8dp"
+                android:textSize="14dp" />
+
+            <Button
+                android:id="@+id/btn_cleartitle"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/error"
+                android:visibility="gone" />
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/border"
+            >
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:id="@+id/etMessageBox"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="8dp"
+                android:autoLink="all"
+                android:hint="Describe your item \nWhat colors, size are available?                              "
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:background="@null"
+                android:lines="4"
+                android:maxLength="2000"
+                android:gravity="top|left"
+                android:maxLines="10"
+                android:textSize="14dp"
+                android:inputType="textMultiLine|textCapSentences"/>
+            <Button
+                android:id="@+id/btn_clearbox"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="end|bottom"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/error"
+                android:visibility="gone" />
+        </FrameLayout>
+        <!--<FrameLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="10dp"-->
+            <!--android:background="@drawable/border"-->
+            <!--&gt;-->
+            <!--<EditText-->
+                <!--android:id="@+id/text4"-->
+                <!--android:layout_width="272dp"-->
+                <!--android:layout_height="40dp"-->
+                <!--android:ems="10"-->
+                <!--android:hint=""-->
+                <!--android:textCursorDrawable="@drawable/color_cursor"-->
+                <!--android:inputType="textPersonName"-->
+                <!--android:background="@null"-->
+                <!--android:layout_marginLeft="8dp"-->
+                <!--android:textSize="16dp" />-->
+
+            <!--<Button-->
+                <!--android:id="@+id/btn_clear4"-->
+                <!--android:layout_width="20dp"-->
+                <!--android:layout_height="20dp"-->
+                <!--android:layout_gravity="end|center_vertical"-->
+                <!--android:layout_marginEnd="10dp"-->
+                <!--android:layout_marginRight="10dp"-->
+                <!--android:background="@drawable/error"-->
+                <!--android:visibility="gone" />-->
+        <!--</FrameLayout>-->
+        <Spinner
+            android:id="@+id/spinnerCategory"
+            android:layout_margin="10dp"
+            style="@android:style/Widget.Holo.Light.Spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-5dp"
+            android:layout_marginTop="5dp"
+            android:spinnerMode="dropdown" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <Spinner
+                android:id="@+id/spinnerCondition"
+                android:layout_margin="10dp"
+                style="@android:style/Widget.Holo.Light.Spinner"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:spinnerMode="dropdown" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/border"
+                >
+
+                <Button
+                    android:id="@+id/btn_clearPrice"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/error"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/textPrice"
+                    android:layout_width="85dp"
+                    android:layout_height="40dp"
+                    android:ems="10"
+                    android:hint="Price"
+                    android:textCursorDrawable="@drawable/color_cursor"
+                    android:inputType="textPersonName"
+                    android:background="@null"
+                    android:layout_marginLeft="8dp"
+                    android:textSize="14dp" />
+            </FrameLayout>
+        </LinearLayout>
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/border"
+            >
+            <EditText
+                android:id="@+id/textLocation"
+                android:layout_width="272dp"
+                android:layout_height="40dp"
+                android:ems="10"
+                android:hint="Location"
+                android:textCursorDrawable="@drawable/color_cursor"
+                android:inputType="textPersonName"
+                android:background="@null"
+                android:layout_marginLeft="8dp"
+                android:textSize="14dp" />
+
+            <Button
+                android:id="@+id/btn_clearlocation"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/error"
+                android:visibility="gone" />
+        </FrameLayout>
+
+
+        <Button
+            android:id="@+id/buttonSell"
+            android:layout_width="250dp"
+            android:layout_height="44dp"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/blue_button"
+            android:text="SELL"/>
+    </LinearLayout>
+
+</RelativeLayout>
