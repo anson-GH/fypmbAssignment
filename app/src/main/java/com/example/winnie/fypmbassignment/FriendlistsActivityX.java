@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class FriendlistsActivity extends AppCompatActivity {
+public class FriendlistsActivityX extends AppCompatActivity {
     FloatingActionButton buttonplus,buttonAddfren;
     Animation fab_scale_down,fab_scale_up,fab_Clockwise,fab_Anticlockwise;
     boolean isOpen = false;
@@ -66,7 +66,7 @@ public class FriendlistsActivity extends AppCompatActivity {
         buttonAddfren.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(FriendlistsActivity.this, FriendSearchlistActivity.class);
+                Intent intent = new Intent(FriendlistsActivityX.this, FriendSearchlistActivity.class);
                 startActivity(intent);
             }
         });

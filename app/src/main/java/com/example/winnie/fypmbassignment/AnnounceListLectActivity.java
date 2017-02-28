@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -15,6 +16,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 
 public class AnnounceListLectActivity extends AppCompatActivity {
@@ -41,6 +44,7 @@ public class AnnounceListLectActivity extends AppCompatActivity {
     private String tempKey3;
     private String tempKey4;
     private String tempKey5;
+    private ImageButton imageButtonAdd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +56,7 @@ public class AnnounceListLectActivity extends AppCompatActivity {
 //        mProgress.show();
         adapter = new CustomListAnnounceAdapter(getApplicationContext(), null);
         mListView = (ListView) findViewById(R.id.mListViewv);
-
+        imageButtonAdd = (ImageButton) findViewById(R.id.imageButtonAdd);
 
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -95,14 +99,33 @@ public class AnnounceListLectActivity extends AppCompatActivity {
                     //refresh listview
                     account = new AnnounceClass[listTitle.size()];
                     for(int i = 0;i<listTitle.size();i++){
-                        account[i] = new AnnounceClass(listCourse.get(i), listTitle.get(i),listTime.get(i),listDate.get(i));
+                        account[i] = new AnnounceClass(listCourse.get(i), listTitle.get(i),listTime.get(i),listDate.get(i),listKeyDb.get(i),listMessage.get(i),listLecturer.get(i),listcgroup.get(i));
                     }
-
 
                     ArrayList<AnnounceClass> list = new ArrayList<AnnounceClass>();
                     for(int i = 0;i<listTitle.size();i++){
                         list.add(account[i]);
                     }
+
+                    Collections.sort(list, new Comparator() {
+                        @Override
+                        public int compare(Object o1, Object o2) {
+                            AnnounceClass p1 = (AnnounceClass) o1;
+                            AnnounceClass p2 = (AnnounceClass) o2;
+                            String DT1 = p1.getDateD() + p1.getTimeD() ;
+                            String DT2 = p2.getDateD() + p2.getTimeD() ;
+
+                            return DT2.compareToIgnoreCase(DT1);
+                        }
+                    });
+                    for(int i = 0;i<listTitle.size();i++){
+                        account[i] = list.get(i);
+                    }
+
+//                    ArrayList<AnnounceClass> list = new ArrayList<AnnounceClass>();
+//                    for(int i = 0;i<listTitle.size();i++){
+//                        list.add(account[i]);
+//                    }
                     adapter = new CustomListAnnounceAdapter(getBaseContext(), account);
                     mListView.setAdapter(adapter);
 
@@ -128,12 +151,12 @@ public class AnnounceListLectActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // TODO Auto-generated method stub
-                String Title = listTitle.get(position);
-                String Course = listCourse.get(position);
-                String Message = listMessage.get(position);
-                String keylist = listKey.get(position);
-                String classroup = listcgroup.get(position);
-                String keydb = listKeyDb.get(position);
+                String Title = account[position].getTitle();
+                String Course = account[position].getCourse();
+                String Message = account[position].getMessages();
+                String keylist = account[position].getKeyDB();
+                String classgroup = account[position].getClassGroup();
+                String keydb = account[position].getKeyDB();
                 // Toast.makeText(getApplicationContext(), , Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(AnnounceListLectActivity.this, AnnounceEditActivity.class);
@@ -141,12 +164,23 @@ public class AnnounceListLectActivity extends AppCompatActivity {
                 intent.putExtra("CoursePass", Course);
                 intent.putExtra("MessagePass", Message);
                 intent.putExtra("KeyPass", keylist);
-                intent.putExtra("CgroupPass", classroup);
+                intent.putExtra("CgroupPass", classgroup);
                 intent.putExtra("KeydbPass", keydb);
                 startActivity(intent);
             }
         });
-
+        imageButtonAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent2 = new Intent(AnnounceListLectActivity.this, AnnouncementActivity.class);
+                startActivity(intent2);
+                finish();
+            }
+        });
     }
+
+
+
+
 
 }

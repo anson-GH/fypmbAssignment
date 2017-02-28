@@ -9,8 +9,15 @@
     <color name="light">#FFEEEEEE</color>
     <color name="grey">#CCCCCC</color>
     <color name="light_grey">#E9E9E9</color>
+    <color name="light_greyD">#E2E2E2</color>
+    <color name="green">#A7E0A5</color>
+    <color name="colorBlack">#333333</color>
+    <color name="colorBlue">#2C3B4F</color>
+
 
     <color name="title_color">#000</color>
     <color name="edit_profile">#5F76BF</color>
     <color name="bottom_black_bgcolor">#90000000</color>
+
+
 </resources>

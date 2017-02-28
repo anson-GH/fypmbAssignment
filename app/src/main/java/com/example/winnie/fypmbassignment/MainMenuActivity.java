@@ -23,7 +23,7 @@ public class MainMenuActivity extends ActionBarActivity {
             R.drawable.announcem,
             R.drawable.ic_people,
             R.drawable.shop,
-            R.drawable.ic_chat
+            R.drawable.ic_chattss
     };
     Intent intent;
     ImageView imageView;

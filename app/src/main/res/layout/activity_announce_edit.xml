@@ -61,20 +61,20 @@ tools:context="com.example.winnie.fypmbassignment.AnnounceEditActivity">
 
     </LinearLayout>
     <FrameLayout
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:background="@drawable/border"
         >
         <TextView
             android:id="@+id/textClass"
-            android:layout_width="340dp"
-            android:layout_height="60dp"
+            android:layout_width="290dp"
+            android:layout_height="50dp"
             android:ems="10"
             android:hint="Choose class group"
             android:background="@null"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="4dp"
             android:textSize="14dp" />
 
 
@@ -95,7 +95,7 @@ tools:context="com.example.winnie.fypmbassignment.AnnounceEditActivity">
         >
         <EditText
             android:id="@+id/textTitle"
-            android:layout_width="310dp"
+            android:layout_width="match_parent"
             android:layout_height="40dp"
             android:ems="10"
             android:hint="Title"
@@ -103,6 +103,7 @@ tools:context="com.example.winnie.fypmbassignment.AnnounceEditActivity">
             android:inputType="textPersonName"
             android:background="@null"
             android:layout_marginLeft="8dp"
+            android:paddingRight="34dp"
             android:textSize="14dp" />
 
         <Button
@@ -113,7 +114,7 @@ tools:context="com.example.winnie.fypmbassignment.AnnounceEditActivity">
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
             android:background="@drawable/error"
-            android:visibility="gone" />
+            android:visibility="visible" />
     </FrameLayout>
 
     <TextView
@@ -131,14 +132,14 @@ tools:context="com.example.winnie.fypmbassignment.AnnounceEditActivity">
 
 
         <EditText
-            android:layout_width="310dp"
-            android:layout_height="180dp"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
             android:id="@+id/etMessageBox"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_margin="8dp"
             android:autoLink="all"
-            android:hint="Message                                            "
+            android:hint="Messages                                                               "
             android:textCursorDrawable="@drawable/color_cursor"
             android:background="@null"
             android:lines="10"
@@ -146,6 +147,7 @@ tools:context="com.example.winnie.fypmbassignment.AnnounceEditActivity">
             android:gravity="top|left"
             android:maxLines="10"
             android:textSize="14dp"
+            android:paddingBottom="20dp"
             android:inputType="textMultiLine|textCapSentences"/>
         <Button
             android:id="@+id/btn_clearbox"
@@ -159,16 +161,29 @@ tools:context="com.example.winnie.fypmbassignment.AnnounceEditActivity">
             android:visibility="visible" />
 
     </FrameLayout>
-
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/imageBin"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/ic_delete_bin"/>
     <Button
         android:id="@+id/buttonUpdate"
-        android:layout_width="250dp"
+        android:layout_width="200dp"
         android:layout_height="44dp"
         android:textColor="@color/white"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="80dp"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/blue_button"
         android:text="UPDATE"/>
+    </RelativeLayout>
+
     <!--<TextView-->
     <!--android:id="@+id/textView1"-->
     <!--android:layout_width="wrap_content"-->

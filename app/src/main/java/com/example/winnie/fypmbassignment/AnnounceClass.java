@@ -10,11 +10,22 @@ public class AnnounceClass {
     public final String title;
     public final String DateD;
     public final String TimeD;
-    public AnnounceClass(String course, String title,String TimeD, String DateD) {
+    public final String KeyDB;
+    public final String Messages;
+    public final String LecturerD;
+    public final String classGroup;
+
+
+
+    public AnnounceClass(String course, String title, String TimeD, String DateD, String KeyDB, String Messages, String LecturerD, String classGroup) {
         this.course  = course;
         this.title = title;
         this.DateD  = DateD;
         this.TimeD = TimeD;
+        this.KeyDB  = KeyDB;
+        this.Messages = Messages;
+        this.LecturerD  = LecturerD;
+        this.classGroup = classGroup;
     }
 
     public String getCourse() {
@@ -33,7 +44,19 @@ public class AnnounceClass {
         return TimeD;
     }
 
-    /**
-     * Created by Winnie on 23/2/2017.
-     */
+    public String getKeyDB() {
+        return KeyDB;
+    }
+
+    public String getMessages() {
+        return Messages;
+    }
+
+    public String getLecturerD() {
+        return LecturerD;
+    }
+
+    public String getClassGroup() {
+        return classGroup;
+    }
 }

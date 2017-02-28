@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
@@ -39,6 +40,10 @@ public class FriendProfileViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friend_profile_view);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+
+
         Context context;
         Bitmap bitmap= BitmapFactory.decodeResource(this.getResources(), R.drawable.pro2);
 
@@ -130,6 +135,7 @@ public class FriendProfileViewActivity extends AppCompatActivity {
                 HashMap<String, Object> result2 = new HashMap<>();
                 result2.put("Message", "");
                 result2.put("TIMESTAMP", "");
+                result2.put("name", "");
                 databaseReference6.child(puskey).updateChildren(result2);
 
                 databaseReference3.child(idF).child("friendlist").child(puskey).child("id").setValue("12AAD1212");

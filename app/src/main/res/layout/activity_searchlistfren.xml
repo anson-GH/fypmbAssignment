@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
+    android:paddingLeft="5dp"
     android:layout_height="fill_parent" >
 
     <EditText
@@ -9,7 +10,9 @@
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_searching"
         android:drawablePadding="10dp"
-        android:textSize="16dp"
+        android:textSize="15dp"
+        android:background="@drawable/apptheme_edit_text_holo_light"
+        android:textCursorDrawable="@drawable/color_cursor"
         android:hint="Search for people">
         <requestFocus />
     </EditText>

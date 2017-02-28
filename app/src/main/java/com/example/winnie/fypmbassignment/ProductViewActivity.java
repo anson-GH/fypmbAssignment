@@ -1,12 +1,12 @@
         package com.example.winnie.fypmbassignment;
 
-        import android.os.Bundle;
+        import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
@@ -22,29 +22,46 @@ import java.util.ArrayList;
 
             SliderLayout sliderLayout;
             TextView etItemName;
-
+            String KeyF;
+            String nameF;
+            String priceF;
+            String descriptionF;
+            String conditionF;
+            String categoryF;
+            String image1F;
+            String image2F;
+            String image3F;
+            String locationF;
+            String timeStampF;
+            String statuSF;
+            String studIDF;
             @Override
             protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_product_view);
 
-
+                Intent i = getIntent();
+                KeyF = i.getStringExtra("itemKeyPass");
+                nameF = i.getStringExtra("itemNamePass");
+                priceF = i.getStringExtra("itemPricePass");
+                descriptionF = i.getStringExtra("itemDescriptionPass");
+                conditionF = i.getStringExtra("itemConditionPass");
+                categoryF = i.getStringExtra("itemCategoryPass");
+                image1F = i.getStringExtra("itemImage1Pass");
+                image2F = i.getStringExtra("itemImage2Pass");
+                image3F = i.getStringExtra("itemImage3Pass");
+                locationF = i.getStringExtra("itemLocationPass");
+                timeStampF = i.getStringExtra("itemTimestampPass");
+                statuSF = i.getStringExtra("itemStatusPass");
+                studIDF = i.getStringExtra("itemStudIDPass");
 
 
                 etItemName = (TextView) findViewById(R.id.etItemName);
 
-                String s = getIntent().getStringExtra("EXTRA_SESSION_ID");
-
-                Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
-
-                etItemName.setText(s.toString());
+                etItemName.setText(nameF);
 
                 //Call this method if you want to add images from URL .
                AddImagesUrlOnline();
-
-
-
-
 
             }
 
