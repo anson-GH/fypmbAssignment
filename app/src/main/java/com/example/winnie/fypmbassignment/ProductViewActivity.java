@@ -5,7 +5,8 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.TypedValue;
+        import android.text.format.DateUtils;
+        import android.util.TypedValue;
 import android.widget.TextView;
 
 import com.daimajia.slider.library.SliderLayout;
@@ -16,12 +17,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
+        import java.text.DecimalFormat;
+        import java.util.ArrayList;
 
         public class ProductViewActivity extends AppCompatActivity implements ViewPagerEx.OnPageChangeListener {
 
             SliderLayout sliderLayout;
-            TextView etItemName;
+            TextView etItemName,etCondition,etTime,etPrice,etDescription;
             String KeyF;
             String nameF;
             String priceF;
@@ -55,11 +57,23 @@ import java.util.ArrayList;
                 statuSF = i.getStringExtra("itemStatusPass");
                 studIDF = i.getStringExtra("itemStudIDPass");
 
-
+                etPrice = (TextView) findViewById(R.id.etPrice);
                 etItemName = (TextView) findViewById(R.id.etItemName);
+                etCondition = (TextView) findViewById(R.id.etCondition);
+                etDescription = (TextView) findViewById(R.id.etDescription);
+                etTime = (TextView) findViewById(R.id.etTime);
 
                 etItemName.setText(nameF);
+                etCondition.setText(conditionF);
+                etDescription.setText(descriptionF);
+                String formattedPrice = new DecimalFormat("##,##0.00").format(priceF);
+                etPrice.setText(formattedPrice);
 
+                long dv = Long.valueOf(timeStampF)*1000;// its need to be in milisecond
+                long now = System.currentTimeMillis();
+
+                CharSequence ago = DateUtils.getRelativeTimeSpanString(dv, now, DateUtils.SECOND_IN_MILLIS);
+                etTime.setText(ago);
                 //Call this method if you want to add images from URL .
                AddImagesUrlOnline();
 
