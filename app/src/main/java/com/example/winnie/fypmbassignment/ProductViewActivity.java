@@ -66,7 +66,7 @@ import com.google.firebase.database.ValueEventListener;
                 etItemName.setText(nameF);
                 etCondition.setText(conditionF);
                 etDescription.setText(descriptionF);
-                String formattedPrice = new DecimalFormat("##,##0.00").format(priceF);
+                String formattedPrice = new DecimalFormat("##,##0.00").format(Double.parseDouble(priceF));
                 etPrice.setText(formattedPrice);
 
                 long dv = Long.valueOf(timeStampF)*1000;// its need to be in milisecond

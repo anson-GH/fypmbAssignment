@@ -44,7 +44,7 @@ public class SalesCategoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sales_category);
         if (isNetworkAvailable(getApplicationContext())) {
-        CustomGrid2 adapter = new CustomGrid2(SalesCategoryActivity.this, web, imageId);
+        CustomGridCategoryAdapter adapter = new CustomGridCategoryAdapter(SalesCategoryActivity.this, web, imageId);
         grid = (GridView) findViewById(R.id.gridCategory);
         grid.setAdapter(adapter);
 

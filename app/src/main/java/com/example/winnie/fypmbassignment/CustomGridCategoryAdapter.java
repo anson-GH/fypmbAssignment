@@ -12,12 +12,12 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class CustomGrid2 extends BaseAdapter{
+public class CustomGridCategoryAdapter extends BaseAdapter{
     private Context mContext;
     private final String[] web;
     private final int[] Imageid;
 
-    public CustomGrid2(Context c, String[] web, int[] Imageid ) {
+    public CustomGridCategoryAdapter(Context c, String[] web, int[] Imageid ) {
         mContext = c;
         this.Imageid = Imageid;
         this.web = web;

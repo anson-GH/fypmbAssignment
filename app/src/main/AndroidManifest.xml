@@ -15,9 +15,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
-
-        <activity android:name=".SalesCategoryActivity">
+        android:theme="@style/AppTheme">
+        <activity android:name=".SalesGridlistActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,20 +31,20 @@
         <!-- <activity android:name=".ProductActivity" /> -->
         <!-- <activity android:name=".ChangePasswordActivity" /> -->
         <!-- <activity android:name=".EditProfile" /> -->
-        <!--<activity android:name=".AnnounceListLectActivity" />-->
-        <activity android:name=".AnnouncementActivity"/>
+        <!-- <activity android:name=".AnnounceListLectActivity" /> -->
+        <activity android:name=".AnnouncementActivity" />
         <activity android:name=".AnnounceViewActivity" />
         <!-- <activity android:name=".AnnouncementListActivity"/> -->
         <activity android:name=".Profile.ProfileViewActivity" />
         <!-- <activity android:name=".RetrieveActivity"/> -->
         <!-- <activity android:name=".SalesListActivity" /> -->
         <!-- <activity android:name=".SalesListActivity"></activity> -->
-         <activity android:name=".ProductEditActivity" />
+        <activity android:name=".ProductEditActivity" />
         <!-- <activity android:name=".ReportActivity"/> -->
         <!-- <activity android:name=".MainMenuActivity"></activity> -->
         <activity android:name=".SellerProfileActivity" />
         <!-- <activity android:name=".SalesCategoryActivity"/> -->
-        <!--<activity android:name=".FriendSearchlistActivity" />-->
+        <!-- <activity android:name=".FriendSearchlistActivity" /> -->
         <activity android:name=".AnnounceEditActivity" />
         <activity android:name=".Crop.ImageCropActivity" />
         <!-- <activity android:name=".Profile.EditProfileActivity"></activity> -->
@@ -55,9 +54,10 @@
         <activity android:name=".chat.Chat_Room" />
         <!-- <activity android:name=".SearchfriendActivityfromdb"></activity> -->
         <activity android:name=".FriendProfileViewActivity" />
-         <activity android:name=".FriendChatlistActivity"/>
-        <activity android:name=".ProductSellerViewActivity"/>
-        <!--<activity android:name=".MainMenuAActivity"/>-->
+        <activity android:name=".FriendChatlistActivity" />
+        <activity android:name=".ProductSellerViewActivity" />
+        <!-- <activity android:name=".MainMenuAActivity"/> -->
+        <!--<activity android:name=".SalesGridlistActivity"></activity>-->
     </application>
 
 </manifest>
