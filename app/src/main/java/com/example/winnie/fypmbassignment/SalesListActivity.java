@@ -15,15 +15,25 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 public class SalesListActivity extends AppCompatActivity {
     ListView mListView;
     CustomListSalesAdapter adapter;
-  ArrayList<String> listtvName = new ArrayList<>();
+    ArrayList<String> listtvName = new ArrayList<>();
     ArrayList<String> listtvPrice = new ArrayList<>();
-    ArrayList<String> listivImage = new ArrayList<>();
-private ProgressDialog mProgress;
+    ArrayList<String> listivImage1 = new ArrayList<>();
+    ArrayList<String> listivImage2 = new ArrayList<>();
+    ArrayList<String> listivImage3 = new ArrayList<>();
+    ArrayList<String> listKey = new ArrayList<>();
+    ArrayList<String> listDescription = new ArrayList<>();
+    ArrayList<String> listCondition = new ArrayList<>();
+    ArrayList<String> listCategory= new ArrayList<>();
+    ArrayList<String> listLocation= new ArrayList<>();
+    ArrayList<String> listTimestamp= new ArrayList<>();
+    ArrayList<String> listStatus= new ArrayList<>();
+    ArrayList<String> listStudentID= new ArrayList<>();
+
+    private ProgressDialog mProgress;
     // positionRow p ;
     SalesClass[] salesClass;
 
@@ -49,23 +59,34 @@ private ProgressDialog mProgress;
         String getgridchosen = getIntent().getStringExtra("salesclick");
 
 System.out.println("1             "+getgridchosen);
-        databaseReference.child("Category").child("Beauty").addChildEventListener(new ChildEventListener() {
+        databaseReference.child("Category").child("Mensfashion").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                // String value= dataSnapshot.getValue(String.class).toString();
-                Map<String, Object> map = (Map) dataSnapshot.getValue();
-               String name = map.get("Item name").toString();
-          //   String   price = map.get("price").toString();
-     //        String   img1 = map.get("Image1").toString();
-                String   img1 = null;
-                listtvName.add(name);
-                listivImage.add(img1);
-                //       listtvPrice.add(dss.child("price").getValue().toString());
+              //  Map<String, Object> map = (Map) dataSnapshot.getValue();
+            //   String name = map.get("Item name").toString();
+
+                listKey.add(dataSnapshot.getKey().toString());
+                listtvName.add(dataSnapshot.child("Item name").getValue().toString());
+                listtvPrice.add(dataSnapshot.child("Price").getValue().toString());
+                listDescription.add(dataSnapshot.child("Description").getValue().toString());
+                listCondition.add(dataSnapshot.child("Condition").getValue().toString());
+                listCategory.add(dataSnapshot.child("Category").getValue().toString());
+                listLocation.add(dataSnapshot.child("Location").getValue().toString());
+                listivImage1.add(dataSnapshot.child("Image1").getValue().toString());
+                listivImage2.add(dataSnapshot.child("Image2").getValue().toString());
+                listivImage3.add(dataSnapshot.child("Image3").getValue().toString());
+                listTimestamp.add(dataSnapshot.child("Timestamp").getValue().toString());
+                listStatus.add(dataSnapshot.child("Status").getValue().toString());
+                listStudentID.add(dataSnapshot.child("Student id").getValue().toString());
+
 
                 salesClass = new SalesClass[listtvName.size()];
                 for(int j = 0;j<listtvName.size();j++){
-                    salesClass[j] = new SalesClass(listtvName.get(j), listivImage.get(j));
-
+                    if(listStatus.get(j).toString().equals("SALE")){
+                    salesClass[j] = new SalesClass(listKey.get(j) ,listtvName.get(j),listtvPrice.get(j),listDescription.get(j),listCondition.get(j),listCategory.get(j),
+                            listLocation.get(j),listivImage1.get(j),listivImage2.get(j),listivImage3.get(j),listTimestamp.get(j),listStatus.get(j),listStudentID.get(j));
+                    }
                 }
 
                 adapter = new CustomListSalesAdapter(getBaseContext(), salesClass);
@@ -105,13 +126,55 @@ System.out.println("1             "+getgridchosen);
                                     int position, long id) {
                 // TODO Auto-generated method stub
 
-                String Slecteditem= listtvName.get(position);
+                String itemKey= salesClass[position].getIdKey();
+                String itemName= salesClass[position].getName();
+                String itemPrice= salesClass[position].getPrice();
+                String itemDescription= salesClass[position].getDescription();
+                String itemCondition= salesClass[position].getCondition();
+                String itemCategory= salesClass[position].getCategory();
+                String itemImage1= salesClass[position].getImage1();
+                String itemImage2= salesClass[position].getImage2();
+                String itemImage3= salesClass[position].getImage3();
+                String itemLocation= salesClass[position].getLocation();
+                String itemTimestamp= salesClass[position].getTimestamp();
+                String itemStatus= salesClass[position].getStatus();
+                String itemStudID= salesClass[position].getStudID();
 
-               // Toast.makeText(getApplicationContext(), , Toast.LENGTH_SHORT).show();
+                            if(itemStudID.equals("12AAD1212")) {
+                                Intent intent2 = new Intent(SalesListActivity.this, ProductSellerViewActivity.class);
+                                intent2.putExtra("itemKeyPass", itemKey);
+                                intent2.putExtra("itemNamePass", itemName);
+                                intent2.putExtra("itemPricePass", itemPrice);
+                                intent2.putExtra("itemDescriptionPass", itemDescription);
+                                intent2.putExtra("itemConditionPass", itemCondition);
+                                intent2.putExtra("itemCategoryPass", itemCategory);
+                                intent2.putExtra("itemImage1Pass", itemImage1);
+                                intent2.putExtra("itemImage2Pass", itemImage2);
+                                intent2.putExtra("itemImage3Pass", itemImage3);
+                                intent2.putExtra("itemLocationPass", itemLocation);
+                                intent2.putExtra("itemTimestampPass", itemTimestamp);
+                                intent2.putExtra("itemStatusPass", itemStatus);
+                                intent2.putExtra("itemStudIDPass", itemStudID);
+                                startActivity(intent2);
 
-                Intent intent = new Intent (SalesListActivity.this, ProductViewActivity.class);
-                intent.putExtra("EXTRA_SESSION_ID", Slecteditem);
-                startActivity(intent);
+                            }else{
+                                Intent intent = new Intent (SalesListActivity.this, ProductViewActivity.class);
+                                intent.putExtra("itemKeyPass", itemKey);
+                                intent.putExtra("itemNamePass", itemName);
+                                intent.putExtra("itemPricePass", itemPrice);
+                                intent.putExtra("itemDescriptionPass", itemDescription);
+                                intent.putExtra("itemConditionPass", itemCondition);
+                                intent.putExtra("itemCategoryPass", itemCategory);
+                                intent.putExtra("itemImage1Pass", itemImage1);
+                                intent.putExtra("itemImage2Pass", itemImage2);
+                                intent.putExtra("itemImage3Pass", itemImage3);
+                                intent.putExtra("itemLocationPass", itemLocation);
+                                intent.putExtra("itemTimestampPass", itemTimestamp);
+                                intent.putExtra("itemStatusPass", itemStatus);
+                                intent.putExtra("itemStudIDPass", itemStudID);
+                                startActivity(intent);
+
+                            }
             }
         });
 

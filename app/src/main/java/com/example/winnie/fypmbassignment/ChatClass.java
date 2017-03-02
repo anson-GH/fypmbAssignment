@@ -9,13 +9,17 @@ public class ChatClass {
     public final String ChatImage;
     public final String ChatMessage;
     public final String ChatTimeDate;
+    public final String ChatKey;
+    public final String ChatUser;
 
 
-    public ChatClass(String Chatname, String ChatImage, String ChatTimeDate, String ChatMessage) {
+    public ChatClass(String Chatname, String ChatImage, String ChatTimeDate, String ChatMessage, String ChatKey, String ChatUser) {
         this.Chatname  = Chatname;
         this.ChatImage = ChatImage;
         this.ChatTimeDate  = ChatTimeDate;
         this.ChatMessage  = ChatMessage;
+        this.ChatKey  = ChatKey;
+        this.ChatUser  = ChatUser;
 
     }
     public String getChatname() {
@@ -32,5 +36,10 @@ public class ChatClass {
     public String getChatMessage() {
         return ChatMessage;
     }
-
+    public String getChatUser() {
+        return ChatUser;
+    }
+    public String getChatKey() {
+        return ChatKey;
+    }
 }

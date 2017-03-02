@@ -10,23 +10,27 @@
 
         <TextView
             android:id="@+id/txtAnnTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:text="announcement title"
             android:textSize="16dp"
             android:layout_marginLeft="10dp"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:layout_marginTop="10dp"
             android:padding="2dp"
             android:textStyle="bold"
             />
         <TextView
             android:id="@+id/txtAnnCourse"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:text="course name"
             android:textSize="16dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:padding="2dp"
             />
         <!--android:textAppearance="@style/?android:attr/textAppearanceMedium"-->

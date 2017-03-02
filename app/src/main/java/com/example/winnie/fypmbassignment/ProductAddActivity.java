@@ -24,18 +24,14 @@ import android.widget.Toast;
 import com.example.winnie.fypmbassignment.Crop.Constants;
 import com.example.winnie.fypmbassignment.Crop.ImageCropActivity;
 import com.example.winnie.fypmbassignment.Crop.PicModeSelectDialogFragment;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class ProductAddActivity extends ActionBarActivity implements View.OnClickListener, PicModeSelectDialogFragment.IPicModeSelectListener{
     private EditText etMessageBox,texttitle,textPrice,textLocation;
@@ -217,6 +213,10 @@ public class ProductAddActivity extends ActionBarActivity implements View.OnClic
     }
 
     private void databaseAdd(){
+        Long tsLong = System.currentTimeMillis()/1000;
+        String ts = tsLong.toString();
+
+
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = database.getReference().getRoot().child("Category").child(itemCategory);
@@ -224,25 +224,28 @@ public class ProductAddActivity extends ActionBarActivity implements View.OnClic
 
         databaseReference.child(pushkey).child("Item name").setValue(texttitle.getText().toString());
         databaseReference.child(pushkey).child("Student id").setValue("12AAD1212");
-//        databaseReference.child(pushkey).child("Price").setValue(textPrice.getText().toString());
-//        databaseReference.child(pushkey).child("Description").setValue(etMessageBox.getText().toString());
-//        databaseReference.child(pushkey).child("Condition").setValue(itemCondition);
-//        databaseReference.child(pushkey).child("Location").setValue(textLocation.getText().toString());
+        databaseReference.child(pushkey).child("Price").setValue(textPrice.getText().toString());
+        databaseReference.child(pushkey).child("Description").setValue(etMessageBox.getText().toString());
+        databaseReference.child(pushkey).child("Condition").setValue(itemCondition);
+        databaseReference.child(pushkey).child("Category").setValue(itemCategory);
+        databaseReference.child(pushkey).child("Location").setValue(textLocation.getText().toString());
        databaseReference.child(pushkey).child("Image1").setValue(getImageViewImage1());
-//        databaseReference.child(pushkey).child("Image2").setValue(getImageViewImage2());
-//        databaseReference.child(pushkey).child("Image3").setValue(getImageViewImage3());
+        databaseReference.child(pushkey).child("Image2").setValue(getImageViewImage2());
+        databaseReference.child(pushkey).child("Image3").setValue(getImageViewImage3());
+        databaseReference.child(pushkey).child("Status").setValue("SALE");
+        databaseReference.child(pushkey).child("Timestamp").setValue(ts);
 
 //        byte[] decodedString = Base64.decode(imageprofile, Base64.DEFAULT);
 //        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
 //        img.setImageBitmap(decodedByte);
 
-        final DatabaseReference databaseReference2 = database.getReference().getRoot().child("student").child("12AAD1212");
-        databaseReference2.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Map<String, Object> map = (Map) dataSnapshot.getValue();
+         DatabaseReference databaseReference2 = database.getReference().getRoot().child("student").child("12AAD1212");
+//        databaseReference2.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                Map<String, Object> map = (Map) dataSnapshot.getValue();
 
-                productlist = map.get("productlist").toString();
+         //       productlist = map.get("productlist").toString();
 //                String[] productlistsplit = productlist.split(",");
 //
 //                for(int j = 0 ;j < productlistsplit.length;j++){
@@ -250,14 +253,15 @@ public class ProductAddActivity extends ActionBarActivity implements View.OnClic
 //                    System.out.println("aaaaaaaaaaaaaaaaaaaa      " + ProductExistList );
 //
 //                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-        databaseReference2.child("productlist").setValue(productlist+pushkey+",");
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
+        databaseReference2.child("productlist").child(pushkey).child("itemname").setValue(texttitle.getText().toString());
+        databaseReference2.child("productlist").child(pushkey).child("itemKey").setValue(pushkey);
 
     }
 
@@ -366,18 +370,6 @@ public class ProductAddActivity extends ActionBarActivity implements View.OnClic
         String action = mode.equalsIgnoreCase(Constants.PicModes.CAMERA) ? Constants.IntentExtras.ACTION_CAMERA : Constants.IntentExtras.ACTION_GALLERY;
         actionProfilePic(action);
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
     private TextWatcher textWatcher() {
         return new TextWatcher() {

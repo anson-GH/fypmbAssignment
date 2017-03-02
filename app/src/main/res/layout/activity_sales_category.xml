@@ -4,11 +4,20 @@
     android:id="@+id/activity_sales_category"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.winnie.fypmbassignment.SalesCategoryActivity">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="CATEGORIES"/>
     <GridView
-        android:numColumns="3"
+        android:numColumns="auto_fit"
         android:gravity="center"
         android:columnWidth="100dp"
+        android:horizontalSpacing="8dp"
+        android:verticalSpacing="8dp"
+        android:layout_margin="10dp"
         android:stretchMode="columnWidth"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"

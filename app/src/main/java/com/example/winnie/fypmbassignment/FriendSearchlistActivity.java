@@ -30,7 +30,7 @@ public class FriendSearchlistActivity extends Activity {
     ArrayList<String> listPosition = new ArrayList<>();
     ArrayList<String> listUserID = new ArrayList<>();
    // ArrayList<Integer> flag = new ArrayList<>();
-
+   DatabaseReference databaseReference,databaseReference2;
     ArrayList<FriendClass> arraylist = new ArrayList<FriendClass>();
 
     @Override
@@ -44,28 +44,54 @@ public class FriendSearchlistActivity extends Activity {
         listviewF.setVisibility(View.GONE);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-           DatabaseReference databaseReference = database.getReference().getRoot();
-                databaseReference.child("User").addListenerForSingleValueEvent(new ValueEventListener() {
+            databaseReference = database.getReference().getRoot();
+        databaseReference2 = database.getReference().getRoot();
+
+        databaseReference.child("User").addListenerForSingleValueEvent(new ValueEventListener() {
                @Override
                public void onDataChange(DataSnapshot dataSnapshot) {
                    if (dataSnapshot.exists()) {
                        for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                        System.out.println("1    "+ postSnapshot.getKey().toString());
+                        System.out.println("1id    "+ postSnapshot.getKey().toString());
 
                         listName.add(postSnapshot.child("name").getValue().toString());
-                        listPosition.add(postSnapshot.child("position").getValue().toString());
-                           listUserID.add(postSnapshot.child("id").getValue().toString());
-                           System.out.println("2    "+ postSnapshot.child("name").getValue().toString());
+                           String idS = postSnapshot.child("id").getValue().toString();
+                        listUserID.add(idS);
+                           String positionS = postSnapshot.child("position").getValue().toString();
+                        listPosition.add(positionS);
+
+                           System.out.println("2name    "+ postSnapshot.child("name").getValue().toString());
+                           System.out.println("3positionS   "+ positionS);
+
+                           databaseReference2.child(positionS).child(idS).addListenerForSingleValueEvent(new ValueEventListener() {
+
+
+                               @Override
+                               public void onDataChange(DataSnapshot dataSnapshot) {
+                                   String imageS = dataSnapshot.child("imageprofile").getValue().toString();
+                                   listImage.add(imageS);
+                                   System.out.println("4imageS    "+ imageS);
+
+                                   for (int i = 0; i < listName.size()&&listName.size()==listImage.size(); i++){
+                                       FriendClass wp = new FriendClass(listName.get(i), listPosition.get(i),listUserID.get(i), listImage.get(i));
+                                       arraylist.add(wp);
+                                   }
+                                   adapter = new CustomListFrenAdapter(getBaseContext(), arraylist);
+                                   listviewF.setAdapter(adapter);
+                                   adapter.notifyDataSetChanged();
+
+                               }
+
+                               @Override
+                               public void onCancelled(DatabaseError databaseError) {
+
+                               }
+                           });
+
                            //  listImage
                        }
 
-                         for (int i = 0; i < listName.size(); i++){
-                             FriendClass wp = new FriendClass(listName.get(i), listPosition.get(i),listUserID.get(i), "");
-                              arraylist.add(wp);
-                         }
-                          adapter = new CustomListFrenAdapter(getBaseContext(), arraylist);
-                       listviewF.setAdapter(adapter);
-                       adapter.notifyDataSetChanged();
+
                    }
                }
                @Override

@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         >
     <LinearLayout
-        android:background="@drawable/bg"
+        android:background="@drawable/rounded_cornerarrow"
         android:layout_gravity="left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,16 +35,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
-            android:textSize="18dp"
+            android:textSize="15dp"
             android:text="Hello how are you?" />
 
         <TextView
             android:id="@+id/textViewTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="5dp"
             android:text="Belal Khan, 2016-05-29 16:02:00?"
             android:fontFamily="sans-serif-light"
-            android:textSize="10dp"
+            android:textSize="9dp"
             />
 
     </LinearLayout>

@@ -1,6 +1,7 @@
 package com.example.winnie.fypmbassignment;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
@@ -513,7 +514,14 @@ String a =textClass.getText().toString() ;
 
 
 
+    @Override
+    public void onBackPressed() {
+        // your code.
+        Intent intent2 = new Intent(AnnouncementActivity.this, AnnounceListLectActivity.class);
+        startActivity(intent2);
+        finish();
 
+    }
 
 
 

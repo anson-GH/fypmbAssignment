@@ -60,18 +60,24 @@ public class CustomListChatAdapter  extends BaseAdapter {
 //        ivImage.setImageBitmap(decodedByte);
 
         txtName.setText(chatClass.get(position).getChatname());
-        txtMessage.setText(chatClass.get(position).getChatMessage());
+        txtMessage.setText(chatClass.get(position).ChatUser+":\n"+ chatClass.get(position).getChatMessage());
 
 //        long time =  // The Twitter post time stamp
 //        long now = System.currentTimeMillis();
 //        CharSequence relativeTimeStr = DateUtils.getRelativeTimeSpanString(time,
 //                now, DateUtils.SECOND_IN_MILLIS, DateUtils.FORMAT_ABBREV_RELATIVE);
+        String vv;
+        String DT =chatClass.get(position).getChatTimeDate();
+        if(DT.equals("")){
 
-        long dv = Long.valueOf(chatClass.get(position).getChatTimeDate())*1000;// its need to be in milisecond
-        Date df = new java.util.Date(dv);
-        String vv = new SimpleDateFormat("hh:mma MMM, dd").format(df);
+            txtTime.setText("");
+        }else{
+            long dv = Long.valueOf(DT)*1000;// its need to be in milisecond
+            Date df = new java.util.Date(dv);
+             vv = new SimpleDateFormat("hh:mma MMM, dd").format(df);
+            txtTime.setText(vv);
+        }
 
-        txtTime.setText(vv);
 
 
         return rowView;

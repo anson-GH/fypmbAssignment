@@ -1,8 +1,11 @@
 package com.example.winnie.fypmbassignment;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
@@ -39,6 +42,8 @@ public class FriendChatlistActivity extends AppCompatActivity {
     private ArrayList<String> chatImage = new ArrayList<>();
     private ArrayList<String> chatMessage = new ArrayList<>();
     private ArrayList<String> chatTimeDate = new ArrayList<>();
+    private ArrayList<String> chatUser = new ArrayList<>();
+    private ArrayList<String> chatPosition = new ArrayList<>();
 
      CustomListChatAdapter adapter;
     DatabaseReference databaseReference;
@@ -50,6 +55,21 @@ public class FriendChatlistActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friend_chatlist);
+
+
+//        ActionBar actionBar = getSupportActionBar();
+//       actionBar.hide();
+        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#2C3B4F"));
+        getSupportActionBar().setBackgroundDrawable(colorDrawable);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.actionbarchat);
+
+
+//        if (Build.VERSION.SDK_INT >= 21) {
+//            // Set the status bar to dark-semi-transparentish
+//            getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+//                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//        }
 
         buttonplus = (FloatingActionButton) findViewById(R.id.buttonplus);
         buttonAddfren = (FloatingActionButton) findViewById(R.id.buttonAddfren);
@@ -95,6 +115,7 @@ public class FriendChatlistActivity extends AppCompatActivity {
                 chatID.removeAll(chatID);
                 chatName.removeAll(chatName);
                 chatKey.removeAll(chatKey);
+                chatPosition.removeAll(chatPosition);
                 chatImage.removeAll(chatImage);
 
 
@@ -104,14 +125,17 @@ public class FriendChatlistActivity extends AppCompatActivity {
 
                     Map<String, Object> newPost = (Map<String, Object>) ds.getValue();
                     String idget = newPost.get("id").toString();
+                    String positionget = newPost.get("position").toString();
                     String nameget = newPost.get("name").toString();
 
                     System.out.println("friendlistss     "+ds.getKey().toString());
                     System.out.println("friend id     "+idget);
                     System.out.println("friend name     "+nameget);
+                    System.out.println("friend position     "+positionget);
 
                     chatID.add(idget);
                     chatName.add(nameget);
+                    chatPosition.add(positionget);
                     chatKey.add(ds.getKey().toString());
                     //   friendAll.add(ds.getKey().toString());
 
@@ -126,11 +150,12 @@ public class FriendChatlistActivity extends AppCompatActivity {
                     //         System.out.println("chatnameclass    "+ chatnameclass.get(i));
 
 
-                    database3.child("student").child(idget).child("city").addValueEventListener(new ValueEventListener() {
+                    database3.child(positionget).child(idget).child("city").addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             chatMessage.removeAll(chatMessage);
                             chatTimeDate.removeAll(chatTimeDate);
+                            chatUser.removeAll(chatUser);
 
                             System.out.println("city     " + dataSnapshot.getValue().toString());
                             chatImage.add(dataSnapshot.getValue().toString());
@@ -157,6 +182,8 @@ public class FriendChatlistActivity extends AppCompatActivity {
 
                                             chatMessage.add(dss.child("Message").getValue().toString());
                                             chatTimeDate.add(dss.child("TIMESTAMP").getValue().toString());
+                                            chatUser.add(dss.child("name").getValue().toString());
+
                                             System.out.println("message    "+ dss.child("Message").getValue().toString());
                                             System.out.println("TIMESTAMP    "+ dss.child("TIMESTAMP").getValue().toString());
 
@@ -179,6 +206,8 @@ public class FriendChatlistActivity extends AppCompatActivity {
                                         System.out.println("city22     " + chatImage);
                                         System.out.println("chatMessage22    " + chatMessage);
                                         System.out.println("chatTimeDate22     " + chatTimeDate);
+                                        System.out.println("chatTimeDate22     " + chatTimeDate);
+                                        System.out.println("chatUser22     " + chatUser);
                                         System.out.println("chatclass22     " + chatclass);
                                        chatclass.removeAll(chatclass);
                                     }
@@ -187,12 +216,13 @@ public class FriendChatlistActivity extends AppCompatActivity {
                                     System.out.println("chatName222     " + chatName);
                                     System.out.println("city222     " + chatImage);
                                     System.out.println("chatMessage222    " + chatMessage);
-                                    System.out.println("chatTimeDate222     " + chatTimeDate);
+                                    System.out.println("chatPosition222     " + chatPosition);
+                                    System.out.println("chatUser22     " + chatUser);
                                     System.out.println("chatclass222     " + chatclass);
 
                                     for(int i = 0;i<chatTimeDate.size()&&chatImage.size()==chatTimeDate.size();i++) {
 
-                                        ChatClass chatclass1 = new ChatClass(chatName.get(i), chatImage.get(i), chatTimeDate.get(i), chatMessage.get(i));
+                                        ChatClass chatclass1 = new ChatClass(chatName.get(i), chatImage.get(i), chatTimeDate.get(i), chatMessage.get(i), chatKey.get(i), chatUser.get(i));
                                             chatclass.add(chatclass1);
                                             System.out.println("chatclass    " + chatclass.get(i));
                                             //   set.add(ds.getKey().toString());
@@ -219,6 +249,12 @@ public class FriendChatlistActivity extends AppCompatActivity {
                                     chatclass.removeAll(chatclass);
                                     for(int i = 0;i<list.size();i++){
                                         chatclass.add(list.get(i));
+
+                System.out.println("chatclassname    " + chatclass.get(i).getChatname());
+               System.out.println("chatclassname    " + chatclass.get(i).getChatMessage());
+              System.out.println("chatclassname    " + chatclass.get(i).getChatKey());
+
+
                                     }
 
                                     adapter = new CustomListChatAdapter(getBaseContext(), chatclass);
@@ -263,8 +299,8 @@ public class FriendChatlistActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // TODO Auto-generated method stub
                 //  intent.putExtra("room_name", ((TextView) view).getText().toString());
-                String chatKeyPass= chatKey.get(position);
-                String chatNamePass= chatName.get(position);
+                String chatKeyPass= chatclass.get(position).getChatKey();
+                String chatNamePass= chatclass.get(position).getChatname();
 
                 Intent intent = new Intent(getApplicationContext(), Chat_Room.class);
 

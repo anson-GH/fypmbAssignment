@@ -100,7 +100,7 @@ public class AnnouncementListActivity extends AppCompatActivity {
                                         //  }
                                        account = new AnnounceClass[listTitle.size()];
                                         for(int i = 0;i<listTitle.size();i++){
-                                            account[i] = new AnnounceClass(listCourse.get(i), listTitle.get(i),listTime.get(i),listDate.get(i));
+                                            account[i] = new AnnounceClass(listCourse.get(i), listTitle.get(i),listTime.get(i),listDate.get(i),"",listMessage.get(i),listLecturer.get(i),"");
                                         }
 
 
@@ -216,8 +216,8 @@ public class AnnouncementListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // TODO Auto-generated method stub
-                String Title= listTitle.get(position);
-                String Course= listCourse.get(position);
+                String Title= account[position].getTitle();
+                String Course= account[position].getCourse();
 
                 // Toast.makeText(getApplicationContext(), , Toast.LENGTH_SHORT).show();
 
